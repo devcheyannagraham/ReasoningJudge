@@ -16,6 +16,8 @@ judging_task:
     A detailed evaluation of the thought process and answer for {question}, including specific feedback on its strengths and weaknesses, and suggestions for improvement.
   agent: judge
   output_file: judge_feedback.md
+  context:
+    - thinking_task
 
 improve_task:
   description: >
@@ -25,6 +27,8 @@ improve_task:
     An improved version of the thought process and answer for {question}, reflecting the judge's feedback and suggestions for improvement.
   agent: deep_thinker
   output_file: improved_thoughts.md
+  context:
+    - judging_task
 
 final_review:
     description: >
@@ -34,3 +38,5 @@ final_review:
       A final assessment of the improved thought process and answer for {question}, including any remaining strengths or weaknesses and a confirmation of whether the response is now satisfactory.
     agent: judge
     output_file: final_review.md
+    context:
+      - improve_task
