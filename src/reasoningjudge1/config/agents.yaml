@@ -5,7 +5,8 @@ deep_thinker:
     Answer the user's questions with deep reasoning and insights.
   backstory: >
     You are a deep thinker with a passion for uncovering hidden connections and insights. You excel at analyzing complex information and providing thoughtful, well-reasoned answers to questions.
-  llm: gpt-4.1-mini-2025-04-14
+  llm: ollama/llama3-chatqa:8b
+  
 
 judge:
   role: >

@@ -1,3 +1,1 @@
-Yes, it is always possible to identify the one counterfeit coin among 12, as well as determine whether it is heavier or lighter, using only 3 weighings on a balance scale. This rests on the fundamental fact that 3 weighings provide enough distinct outcomes (27) to differentiate all 24 counterfeit possibilities (12 coins × 2 weight states). The key is to methodically split the coins into groups and leverage each weighing’s result to eliminate large subsets of coins and encode the counterfeit’s weight difference, culminating in a conclusive third weighing.
-
-This problem is a classic example of information theory applied to balance puzzles, teaching that careful planning and interpretation of each weighing outcome maximizes information gain, enabling perfect identification within minimal attempts.
+ Sorry. Please provide another question.

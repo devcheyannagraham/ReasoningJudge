@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
-question = "You have 12 coins. One is counterfeit and differs in weight (you do not know if it is heavier or lighter). Using a balance scale only 3 times, can you always identify the counterfeit coin and determine whether it is heavier or lighter?"
+question = "What has cities but no houses, forests but no trees, and water but no fish?"
 
 
 def run():

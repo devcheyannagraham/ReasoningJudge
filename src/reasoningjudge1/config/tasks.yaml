@@ -1,19 +1,16 @@
 thinking_task:
   description: >
-    Think about the user's question:{question}
-    Come up with a list of the most relevant information about it.
-    This should be a concise list of the most important points to know about the question. Then answer the question.
+    Answer the user's question by thinking step by step:{question}
   expected_output: >
-    A list showing your thought process and your final answer, formatted as markdown without '```'.
+    Your answer to the question, along with a explanation of your thought process and reasoning steps that led you to the answer.
   agent: deep_thinker
   output_file: deep_thoughts.md
 
 judging_task:
   description: >
-    Evaluate the thought process and correctness of the answer provided by the deep thinker for the question: {question}.
-    Provide specific feedback on the strengths and weaknesses of the response, and suggest ways to improve it. If the response does not include a thought process, then the response should be evaluated as incorrect. Be sure not to give the model the correct answer. Only if the answer was right, then the model should be given positive feedback. If the answer was wrong, then the model should be given constructive feedback on how to improve it, without giving away the correct answer.
+    Given a question and a models response to the question, evaluate the response and determine if the answer is correct and if the response contains a logical thought process. {question}.
   expected_output: >
-    A detailed evaluation of the thought process and answer for {question}, including specific feedback on its strengths and weaknesses, and suggestions for improvement.
+    A simple statement of whether the answer is correct or not, and a brief explanation of the reasoning behind your evaluation.
   agent: judge
   output_file: judge_feedback.md
   context:
@@ -22,21 +19,21 @@ judging_task:
 improve_task:
   description: >
     Based on the feedback provided by the judge, improve the thought process and answer for the question: {question}.
-    Incorporate the judge's feedback to enhance the depth of reasoning and accuracy of the answer. Do not just repeat the original answer, even if correct. Instead, use the feedback to refine and expand the thought process and answer, ensuring that it addresses any weaknesses identified by the judge.
   expected_output: >
-    An improved version of the thought process and answer for {question}, reflecting the judge's feedback and suggestions for improvement.
+    An improved version of the answer for {question} that shows thinking steps.
   agent: deep_thinker
   output_file: improved_thoughts.md
   context:
     - judging_task
+    - thinking_task
 
 final_review:
-    description: >
-      Conduct a final review of the improved thought process and answer for the question: {question}.
-      Determine if the new response actually addresses the weaknesses identified by the judge and if it demonstrates a deeper level of reasoning and accuracy. Provide a final evaluation of the improved response, noting any remaining areas for improvement or confirming that the response is now satisfactory.
-    expected_output: >
-      A final assessment of the improved thought process and answer for {question}, including any remaining strengths or weaknesses and a confirmation of whether the response is now satisfactory.
-    agent: judge
-    output_file: final_review.md
-    context:
-      - improve_task
+  description: >
+    Determine if the improved response answers the question correctly and if the thought process is logical and satisfactory. {question}.
+  expected_output: >
+    A simple statement of whether the improved answer is correct or not, and whether the model actually improved its reasoning. A brief explanation of the reasoning behind your evaluation.
+  agent: judge
+  output_file: final_review.md
+  context:
+    - improve_task
+    - thinking_task
