@@ -8,9 +8,15 @@ thinking_task:
 
 judging_task:
   description: >
-    Given a question and a models response to the question, evaluate the response and determine if the answer is correct and if the response contains a logical thought process. {question}.
+    Given a question and a models response to the question, evaluate the response and determine if the answer is correct and if the response contains a logical thought process. The response is valid if it contains the correct answer and shows evidence of a logical thought process. If the answer is incorrect, DO NOT provide the correct answer. The answer can be incorrect and still show a logical thought process. {question}.
   expected_output: >
-    A simple statement of whether the answer is correct or not, and a brief explanation of the reasoning behind your evaluation.
+    A simple statement of whether the answer is correct or not, and if the response shows evidence of a logical thought process. 
+    example responses:
+    the answer is correct and shows a logical thought process.
+    the answer is incorrect but shows a logical thought process.
+    the answer is correct but does not show a logical thought process.
+    the answer is incorrect and does not show a logical thought process.
+
   agent: judge
   output_file: judge_feedback.md
   context:

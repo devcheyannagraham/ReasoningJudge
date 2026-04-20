@@ -13,21 +13,27 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
-question = "What has cities but no houses, forests but no trees, and water but no fish?"
-
 
 def run():
     """
     Run the crew.
     """
-    inputs = {
-        'topic': 'AI LLMs',
-        'question': question,
-        'current_year': str(datetime.now().year)
-    }
+    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
 
     try:
+        question = input("Enter a question:\n").strip()
+        if question:
+            inputs["question"] = question
+
+        else:
+            print("No question entered. Using default question.")
+            inputs["question"] = (
+                "What has cities but no houses, forests but no trees, and water but no fish?"
+            )
+
+        print("Answering question:", inputs["question"])
         Reasoningjudge1().crew().kickoff(inputs=inputs)
+
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -36,15 +42,15 @@ def train():
     """
     Train the crew for a given number of iterations.
     """
-    inputs = {
-        "topic": "AI LLMs",
-        'current_year': str(datetime.now().year)
-    }
+    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
     try:
-        Reasoningjudge1().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        Reasoningjudge1().crew().train(
+            n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs
+        )
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
+
 
 def replay():
     """
@@ -56,20 +62,21 @@ def replay():
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
 
+
 def test():
     """
     Test the crew execution and returns the results.
     """
-    inputs = {
-        "topic": "AI LLMs",
-        "current_year": str(datetime.now().year)
-    }
+    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
 
     try:
-        Reasoningjudge1().crew().test(n_iterations=int(sys.argv[1]), eval_llm=sys.argv[2], inputs=inputs)
+        Reasoningjudge1().crew().test(
+            n_iterations=int(sys.argv[1]), eval_llm=sys.argv[2], inputs=inputs
+        )
 
     except Exception as e:
         raise Exception(f"An error occurred while testing the crew: {e}")
+
 
 def run_with_trigger():
     """
@@ -78,7 +85,9 @@ def run_with_trigger():
     import json
 
     if len(sys.argv) < 2:
-        raise Exception("No trigger payload provided. Please provide JSON payload as argument.")
+        raise Exception(
+            "No trigger payload provided. Please provide JSON payload as argument."
+        )
 
     try:
         trigger_payload = json.loads(sys.argv[1])
@@ -88,7 +97,7 @@ def run_with_trigger():
     inputs = {
         "crewai_trigger_payload": trigger_payload,
         "topic": "",
-        "current_year": ""
+        "current_year": "",
     }
 
     try:

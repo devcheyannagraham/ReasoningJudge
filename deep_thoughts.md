@@ -1,3 +1,1 @@
- This is the actual complete expected criteria for your final answer:
-
-A desert has cities but no houses and forests but no trees and water but no fish.
+ It has been raining for a month. The river has water but no fish. A fire in the forest burns all trees. City without houses due to war. All questions are linked and can have different outcomes based on current situation!

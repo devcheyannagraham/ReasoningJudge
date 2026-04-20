@@ -26,7 +26,7 @@ class Reasoningjudge1():
     def deep_thinker(self) -> Agent:
         return Agent(
             config=self.agents_config['deep_thinker'], # type: ignore[index]
-            # verbose=True
+            verbose=True
         )
 
     @agent
